@@ -5,7 +5,7 @@
 ## Build With
 
 ![HTML5](https://img.shields.io/badge/HTML5-%23FEFEFE?style=flat&logo=html5&logoColor=%23FEFEFE&labelColor=%23E34F26)
-![JavaScript](https://img.shields.io/badge/JavaScript-%23FEFEFE?style=flat&logo=javascript&logoColor=%23000000&labelColor=%23F7DF1E)
+![JavaScript](https://img.shields.io/badge/JavaScript-%23FEFEFE?style=flat&logo=javascript&logoColor=%234E450E&labelColor=%23F7DF1E)
 ![CSS3](https://img.shields.io/badge/CSS3-%23FEFEFE?style=flat&logo=css&logoColor=%23FEFEFE&labelColor=%23663399)
 
 ### Testing
