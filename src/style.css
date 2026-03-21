@@ -1,296 +1,495 @@
-:root {
-  --text: #6b6375;
-  --text-h: #08060d;
-  --bg: #fff;
-  --border: #e5e4e7;
-  --code-bg: #f4f3ec;
-  --accent: #aa3bff;
-  --accent-bg: rgba(170, 59, 255, 0.1);
-  --accent-border: rgba(170, 59, 255, 0.5);
-  --social-bg: rgba(244, 243, 236, 0.5);
-  --shadow:
-    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
-
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --mono: ui-monospace, Consolas, monospace;
-
-  font: 18px/145% var(--sans);
-  letter-spacing: 0.18px;
-  color-scheme: light dark;
-  color: var(--text);
-  background: var(--bg);
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-
-  @media (max-width: 1024px) {
-    font-size: 16px;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text: #9ca3af;
-    --text-h: #f3f4f6;
-    --bg: #16171d;
-    --border: #2e303a;
-    --code-bg: #1f2028;
-    --accent: #c084fc;
-    --accent-bg: rgba(192, 132, 252, 0.15);
-    --accent-border: rgba(192, 132, 252, 0.5);
-    --social-bg: rgba(47, 48, 58, 0.5);
-    --shadow:
-      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
-  }
-
-  #social .button-icon {
-    filter: invert(1) brightness(2);
-  }
-}
-
-body {
+/* Reset */
+*,
+*::before,
+*::after {
   margin: 0;
-}
-
-h1,
-h2 {
-  font-family: var(--heading);
-  font-weight: 500;
-  color: var(--text-h);
-}
-
-h1 {
-  font-size: 56px;
-  letter-spacing: -1.68px;
-  margin: 32px 0;
-  @media (max-width: 1024px) {
-    font-size: 36px;
-    margin: 20px 0;
-  }
-}
-h2 {
-  font-size: 24px;
-  line-height: 118%;
-  letter-spacing: -0.24px;
-  margin: 0 0 8px;
-  @media (max-width: 1024px) {
-    font-size: 20px;
-  }
-}
-p {
-  margin: 0;
-}
-
-code,
-.counter {
-  font-family: var(--mono);
-  display: inline-flex;
-  border-radius: 4px;
-  color: var(--text-h);
-}
-
-code {
-  font-size: 15px;
-  line-height: 135%;
-  padding: 4px 8px;
-  background: var(--code-bg);
-}
-
-.counter {
-  font-size: 16px;
-  padding: 5px 10px;
-  border-radius: 5px;
-  color: var(--accent);
-  background: var(--accent-bg);
-  border: 2px solid transparent;
-  transition: border-color 0.3s;
-  margin-bottom: 24px;
-
-  &:hover {
-    border-color: var(--accent-border);
-  }
-  &:focus-visible {
-    outline: 2px solid var(--accent);
-    outline-offset: 2px;
-  }
-}
-
-.hero {
-  position: relative;
-
-  .base,
-  .framework,
-  .vite {
-    inset-inline: 0;
-    margin: 0 auto;
-  }
-
-  .base {
-    width: 170px;
-    position: relative;
-    z-index: 0;
-  }
-
-  .framework,
-  .vite {
-    position: absolute;
-  }
-
-  .framework {
-    z-index: 1;
-    top: 34px;
-    height: 28px;
-    transform: perspective(2000px) rotateZ(300deg) rotateX(44deg) rotateY(39deg)
-      scale(1.4);
-  }
-
-  .vite {
-    z-index: 0;
-    top: 107px;
-    height: 26px;
-    width: auto;
-    transform: perspective(2000px) rotateZ(300deg) rotateX(40deg) rotateY(39deg)
-      scale(0.8);
-  }
-}
-
-#app {
-  width: 1126px;
-  max-width: 100%;
-  margin: 0 auto;
-  text-align: center;
-  border-inline: 1px solid var(--border);
-  min-height: 100svh;
-  display: flex;
-  flex-direction: column;
+  padding: 0;
   box-sizing: border-box;
 }
 
-#center {
-  display: flex;
-  flex-direction: column;
-  gap: 25px;
-  place-content: center;
-  place-items: center;
-  flex-grow: 1;
-
-  @media (max-width: 1024px) {
-    padding: 32px 20px 24px;
-    gap: 18px;
-  }
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 100;
+  font-display: swap;
+  src: url(/assets/fonts/Poppins-Thin.woff2) format('woff2');
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+    U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF,
+    U+FFFD;
+}
+@font-face {
+  font-family: 'Poppins';
+  font-style: italic;
+  font-weight: 100;
+  font-display: swap;
+  src: url(/assets/fonts/Poppins-ThinItalic.woff2) format('woff2');
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+    U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF,
+    U+FFFD;
+}
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 200;
+  font-display: swap;
+  src: url(/assets/fonts/Poppins-ExtraLight.woff2) format('woff2');
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+    U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF,
+    U+FFFD;
+}
+@font-face {
+  font-family: 'Poppins';
+  font-style: italic;
+  font-weight: 200;
+  font-display: swap;
+  src: url(/assets/fonts/Poppins-ExtraLightItalic.woff2) format('woff2');
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+    U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF,
+    U+FFFD;
+}
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url(/assets/fonts/Poppins-Light.woff2) format('woff2');
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+    U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF,
+    U+FFFD;
+}
+@font-face {
+  font-family: 'Poppins';
+  font-style: italic;
+  font-weight: 300;
+  font-display: swap;
+  src: url(/assets/fonts/Poppins-LightItalic.woff2) format('woff2');
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+    U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF,
+    U+FFFD;
+}
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(/assets/fonts/Poppins-Regular.woff2) format('woff2');
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+    U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF,
+    U+FFFD;
+}
+@font-face {
+  font-family: 'Poppins';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url(/assets/fonts/Poppins-Italic.woff2) format('woff2');
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+    U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF,
+    U+FFFD;
+}
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(/assets/fonts/Poppins-Medium.woff2) format('woff2');
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+    U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF,
+    U+FFFD;
+}
+@font-face {
+  font-family: 'Poppins';
+  font-style: italic;
+  font-weight: 500;
+  font-display: swap;
+  src: url(/assets/fonts/Poppins-MediumItalic.woff2) format('woff2');
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+    U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF,
+    U+FFFD;
+}
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(/assets/fonts/Poppins-SemiBold.woff2) format('woff2');
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+    U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF,
+    U+FFFD;
+}
+@font-face {
+  font-family: 'Poppins';
+  font-style: italic;
+  font-weight: 600;
+  font-display: swap;
+  src: url(/assets/fonts/Poppins-SemiBoldItalic.woff2) format('woff2');
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+    U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF,
+    U+FFFD;
+}
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(/assets/fonts/Poppins-Bold.woff2) format('woff2');
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+    U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF,
+    U+FFFD;
+}
+@font-face {
+  font-family: 'Poppins';
+  font-style: italic;
+  font-weight: 700;
+  font-display: swap;
+  src: url(/assets/fonts/Poppins-BoldItalic.woff2) format('woff2');
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+    U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF,
+    U+FFFD;
+}
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url(/assets/fonts/Poppins-ExtraBold.woff2) format('woff2');
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+    U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF,
+    U+FFFD;
+}
+@font-face {
+  font-family: 'Poppins';
+  font-style: italic;
+  font-weight: 800;
+  font-display: swap;
+  src: url(/assets/fonts/Poppins-ExtraBoldItalic.woff2) format('woff2');
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+    U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF,
+    U+FFFD;
+}
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+  src: url(/assets/fonts/Poppins-Black.woff2) format('woff2');
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+    U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF,
+    U+FFFD;
+}
+@font-face {
+  font-family: 'Poppins';
+  font-style: italic;
+  font-weight: 900;
+  font-display: swap;
+  src: url(/assets/fonts/Poppins-BlackItalic.woff2) format('woff2');
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+    U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF,
+    U+FFFD;
 }
 
-#next-steps {
-  display: flex;
-  border-top: 1px solid var(--border);
-  text-align: left;
+:root {
+  /* OKLCH is used for its perceptual uniformity, making it easier to create consistent and accessible color scales. */
+  --primary-900: oklch(26.7% 0.04 52.07);
+  --primary-800: oklch(31.58% 0.05 51.33);
+  --primary-700: oklch(37.37% 0.061 52.07);
+  --primary-600: oklch(44.18% 0.076 51.06);
+  --primary-500: oklch(47.11% 0.081 51.45);
+  --primary-400: oklch(58.24% 0.063 53.13);
+  --primary-300: oklch(65.21% 0.051 54.08);
+  --primary-200: oklch(76.36% 0.033 53.36);
+  --primary-100: oklch(84.23% 0.022 56.08);
+  --primary-50: oklch(94.91% 0.007 53.44);
 
-  & > div {
-    flex: 1 1 0;
-    padding: 32px;
-    @media (max-width: 1024px) {
-      padding: 24px 20px;
-    }
-  }
+  --secondary-900: oklch(47.22% 0.081 93.06);
+  --secondary-800: oklch(57.16% 0.099 93.02);
+  --secondary-700: oklch(68.98% 0.122 93.29);
+  --secondary-600: oklch(82.92% 0.148 93.07);
+  --secondary-500: oklch(88.93% 0.159 92.85);
+  --secondary-400: oklch(90.85% 0.137 93.83);
+  --secondary-300: oklch(92.12% 0.12 94.12);
+  --secondary-200: oklch(94.53% 0.086 94.68);
+  --secondary-100: oklch(96.25% 0.059 94.85);
+  --secondary-50: oklch(98.74% 0.019 93.66);
 
-  .icon {
-    margin-bottom: 16px;
-    width: 22px;
-    height: 22px;
-  }
+  --gray-900: oklch(20.46% 0 0);
+  --gray-800: oklch(32.11% 0 0);
+  --gray-700: oklch(56.93% 0 0);
+  --gray-600: oklch(68.3% 0 0);
+  --gray-500: oklch(79.21% 0 0);
+  --gray-400: oklch(84.52% 0 0);
+  --gray-300: oklch(89.75% 0 0);
+  --gray-200: oklch(94.91% 0 0);
+  --gray-100: oklch(95.81% 0 0);
+  --gray-50: oklch(97.31% 0 0);
 
-  @media (max-width: 1024px) {
-    flex-direction: column;
-    text-align: center;
-  }
+  --success-900: oklch(21.02% 0.06 144.62);
+  --success-800: oklch(31.45% 0.096 143.73);
+  --success-700: oklch(41.35% 0.132 143.24);
+  --success-600: oklch(50.42% 0.163 143.16);
+  --success-500: oklch(59.37% 0.193 143.1);
+  --success-400: oklch(66.22% 0.174 144.3);
+  --success-300: oklch(74.18% 0.137 145.33);
+  --success-200: oklch(82.46% 0.091 146.54);
+  --success-100: oklch(91.26% 0.046 147.17);
+  --success-50: oklch(96.33% 0.025 333.73);
+
+  --warning-900: oklch(24.93% 0.056 65.91);
+  --warning-800: oklch(38.6% 0.091 60.02);
+  --warning-700: oklch(51.33% 0.122 58.58);
+  --warning-600: oklch(63.14% 0.152 57.26);
+  --warning-500: oklch(74.42% 0.181 56.46);
+  --warning-400: oklch(78.56% 0.161 64.14);
+  --warning-300: oklch(83.32% 0.129 68.39);
+  --warning-200: oklch(88.39% 0.088 69.59);
+  --warning-100: oklch(94.05% 0.044 70.53);
+  --warning-50: oklch(97.01% 0.022 69.79);
+
+  --error-900: oklch(21.64% 0.053 22.53);
+  --error-800: oklch(32.84% 0.094 23.86);
+  --error-700: oklch(42.91% 0.131 24.51);
+  --error-600: oklch(52.74% 0.165 24.79);
+  --error-500: oklch(62.13% 0.197 24.97);
+  --error-400: oklch(67.97% 0.159 22.23);
+  --error-300: oklch(75.06% 0.117 20.19);
+  --error-200: oklch(83.21% 0.075 18.78);
+  --error-100: oklch(91.49% 0.036 17.82);
+  --error-50: oklch(95.57% 0.017 17.46);
+
+  --white: oklch(100% 0 0);
+  --black: oklch(0% 0 0);
+
+  --primary-color: var(--primary-500);
+  --secondary-color: var(--secondary-500);
+  --success-color: var(--success-500);
+  --warning-color: var(--warning-500);
+  --error-color: var(--error-500);
+  --text-color: var(--primary-900);
+  --bg-color: var(--white);
+
+  --font-family:
+    'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica,
+    Arial, sans-serif;
+  --font-size: 1rem; /* Default 16px */
 }
 
-#docs {
-  border-right: 1px solid var(--border);
-
-  @media (max-width: 1024px) {
-    border-right: none;
-    border-bottom: 1px solid var(--border);
-  }
+body {
+  display: block;
+  min-height: 100vh;
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: var(--font-size);
+  line-height: 1.5;
+  color: var(--text-color);
+  background-color: var(--bg-color);
+  background-image: url('/assets/images/background.svg');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
-#next-steps ul {
-  list-style: none;
-  padding: 0;
-  display: flex;
-  gap: 8px;
-  margin: 32px 0 0;
-
-  .logo {
-    height: 18px;
-  }
-
-  a {
-    color: var(--text-h);
-    font-size: 16px;
-    border-radius: 6px;
-    background: var(--social-bg);
-    display: flex;
-    padding: 6px 12px;
-    align-items: center;
-    gap: 8px;
-    text-decoration: none;
-    transition: box-shadow 0.3s;
-
-    &:hover {
-      box-shadow: var(--shadow);
-    }
-    .button-icon {
-      height: 18px;
-      width: 18px;
-    }
-  }
-
-  @media (max-width: 1024px) {
-    margin-top: 20px;
-    flex-wrap: wrap;
-    justify-content: center;
-
-    li {
-      flex: 1 1 calc(50% - 8px);
-    }
-
-    a {
-      width: 100%;
-      justify-content: center;
-      box-sizing: border-box;
-    }
-  }
+main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
 }
 
-#spacer {
-  height: 88px;
-  border-top: 1px solid var(--border);
-  @media (max-width: 1024px) {
-    height: 48px;
-  }
+header,
+footer {
+  padding: 1rem 2rem;
 }
 
-.ticks {
-  position: relative;
-  width: 100%;
-
-  &::before,
-  &::after {
-    content: '';
-    position: absolute;
-    top: -4.5px;
-    border: 5px solid transparent;
-  }
-
-  &::before {
-    left: 0;
-    border-left-color: var(--border);
-  }
-  &::after {
-    right: 0;
-    border-right-color: var(--border);
-  }
+/* Fonts */
+.display-01 {
+  font-weight: 600;
+  font-size: 5rem;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+.display-02 {
+  font-weight: 600;
+  font-size: 4.5rem;
+  line-height: 1.11;
+  letter-spacing: -0.018em;
+}
+.heading-01 {
+  font-weight: 600;
+  font-size: 3.5rem;
+  line-height: 1.07;
+  letter-spacing: -0.015em;
+}
+.heading-02 {
+  font-weight: 600;
+  font-size: 3rem;
+  line-height: 1.17;
+  letter-spacing: -0.015em;
+}
+.heading-03 {
+  font-weight: 600;
+  font-size: 2.5rem;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+}
+.heading-04 {
+  font-weight: 600;
+  font-size: 2.25rem;
+  line-height: 1.22;
+  letter-spacing: -0.015em;
+}
+.heading-05 {
+  font-weight: 600;
+  font-size: 2rem;
+  line-height: 1.25;
+  letter-spacing: -0.012em;
+}
+.heading-06 {
+  font-weight: 600;
+  font-size: 1.5rem;
+  line-height: 1.33;
+  letter-spacing: -0.012em;
+}
+.subheading-01 {
+  font-weight: 500;
+  font-size: 1.5rem;
+  line-height: 1.33;
+  letter-spacing: -0.012em;
+}
+.subheading-02 {
+  font-weight: 500;
+  font-size: 1.25rem;
+  line-height: 1.4;
+  letter-spacing: -0.015em;
+}
+.subheading-03 {
+  font-weight: 500;
+  font-size: 1rem;
+  line-height: 1.5;
+  letter-spacing: -0.012em;
+}
+.subheading-04 {
+  font-weight: 500;
+  font-size: 0.875rem;
+  line-height: 1.43;
+  letter-spacing: -0.01em;
+}
+.btn-regular {
+  font-weight: 600;
+  font-size: 1.0625rem;
+  line-height: 3.29;
+  letter-spacing: 0;
+}
+.btn-small {
+  font-weight: 600;
+  font-size: 0.875rem;
+  line-height: 3.14;
+  letter-spacing: 0;
+}
+.caption-01 {
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1;
+  letter-spacing: 0;
+}
+.caption-02 {
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1;
+  letter-spacing: 0;
+}
+.caption-03 {
+  font-weight: 400;
+  font-size: 0.75rem;
+  line-height: 1;
+  letter-spacing: 0;
+}
+.body-xxl-300 {
+  font-weight: 300;
+  font-size: 1.5rem;
+  line-height: 1.33;
+  letter-spacing: 0;
+}
+.body-xxl-400 {
+  font-weight: 400;
+  font-size: 1.5rem;
+  line-height: 1.33;
+  letter-spacing: 0;
+}
+.body-xl-300 {
+  font-weight: 300;
+  font-size: 1.25rem;
+  line-height: 1.4;
+  letter-spacing: 0;
+}
+.body-xl-400 {
+  font-weight: 400;
+  font-size: 1.25rem;
+  line-height: 1.4;
+  letter-spacing: 0;
+}
+.body-large-300 {
+  font-weight: 300;
+  font-size: 1.125rem;
+  line-height: 1.44;
+  letter-spacing: 0;
+}
+.body-large-400 {
+  font-weight: 400;
+  font-size: 1.125rem;
+  line-height: 1.44;
+  letter-spacing: 0;
+}
+.body-regular-300 {
+  font-weight: 300;
+  font-size: 1rem;
+  line-height: 1.5;
+  letter-spacing: 0;
+}
+.body-regular-400 {
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.5;
+  letter-spacing: 0;
+}
+.body-small-300 {
+  font-weight: 300;
+  font-size: 0.875rem;
+  line-height: 1.43;
+  letter-spacing: 0;
+}
+.body-small-400 {
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.43;
+  letter-spacing: 0;
+}
+.body-tiny-300 {
+  font-weight: 300;
+  font-size: 0.75rem;
+  line-height: 1.33;
+  letter-spacing: 0;
+}
+.body-tiny-400 {
+  font-weight: 400;
+  font-size: 0.75rem;
+  line-height: 1.33;
+  letter-spacing: 0;
 }
