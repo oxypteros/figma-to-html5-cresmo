@@ -26,17 +26,12 @@ jobs:
         run: |
           mkdir -p $BADGE_FOLDER
 
-          PKG_NAME=$(jq -r '.name' package.json)
           PKG_VERSION=$(jq -r '.version' package.json)
 
-          # Format label
-          LABEL=$(echo "$PKG_NAME" | sed -r 's/(-|_)/ /g' | awk '{for(i=1;i<=NF;i++)sub(/./,toupper(substr($i,1,1)),$i)}1')
-          LABEL_ESC=$(echo "$LABEL" | sed 's/ /%20/g')
-
-          echo "Generating Project Badge: $LABEL v$PKG_VERSION"
+          echo "Generating Project Badge: v$PKG_VERSION"
 
           # Using primary-500 approx color for the version badge
-          curl -s -G "https://img.shields.io/badge/$LABEL_ESC-v$PKG_VERSION-7F4D2E" \
+          curl -s -G "https://img.shields.io/badge/CRESMO-v$PKG_VERSION-7F4D2E" \
             -d style=flat \
             -d labelColor=%23FEFEFE \
             > "$BADGE_FOLDER/version.svg"
