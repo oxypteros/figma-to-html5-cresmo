@@ -1,0 +1,58 @@
+name: Project Version
+
+on:
+  push:
+    paths:
+      - 'package.json'
+  workflow_dispatch:
+
+env:
+  BADGE_FOLDER: '.github/badges'
+  # Custom project badge values
+  PROJECT_LOGO: '' # Base 64 SVG
+  PROJECT_LOGO_COLOR: ''
+  BG_COLOR: ''
+
+jobs:
+  update-badge:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Generate Version Badge
+        run: |
+          mkdir -p $BADGE_FOLDER
+
+          PKG_NAME=$(jq -r '.name' package.json)
+          PKG_VERSION=$(jq -r '.version' package.json)
+
+          # Format label
+          LABEL=$(echo "$PKG_NAME" | sed -r 's/(-|_)/ /g' | awk '{for(i=1;i<=NF;i++)sub(/./,toupper(substr($i,1,1)),$i)}1')
+          LABEL_ESC=$(echo "$LABEL" | sed 's/ /%20/g')
+
+          echo "Generating Project Badge: $LABEL v$PKG_VERSION"
+
+          # Using primary-500 approx color for the version badge
+          curl -s -G "https://img.shields.io/badge/$LABEL_ESC-v$PKG_VERSION-7F4D2E" \
+            -d style=flat \
+            -d labelColor=%23FEFEFE \
+            > "$BADGE_FOLDER/version.svg"
+
+      - name: Deploy Badge
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            
+          git add $BADGE_FOLDER/version.svg
+
+          if git diff --staged --quiet; then
+            echo "No changes to version badge."
+          else
+            git commit -m "🤖 Update Project Version badge [skip ci]"
+            git pull origin ${{ github.ref_name }} --rebase
+            git push origin ${{ github.ref_name }}
+            echo "Badge updated."
+          fi
