@@ -493,3 +493,44 @@ footer {
   line-height: 1.33;
   letter-spacing: 0;
 }
+
+/* Layout */
+.frame {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+.web {
+  max-width: 1440px;
+}
+.tab {
+  max-width: 834px;
+}
+.mobile {
+  max-width: 375px;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, [col-start] 1fr);
+  column-width: 64px;
+  gap: 32px;
+  max-width: 1120px;
+}
+
+/* DEVELOPMENT */
+.bg {
+  background-color: #ccc;
+}
+.b1 {
+  border: 1px solid red;
+}
+.bg1 {
+  background-color: red;
+}
+.b2 {
+  border: 1px solid green;
+}
+.bg2 {
+  background-color: green;
+}
